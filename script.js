@@ -93,3 +93,58 @@ function renderTable(data) {
 
 // Initialize
 loadData();
+
+// --- SORTING LOGIC ---
+
+const tableHeaders = document.querySelectorAll('th');
+let sortDirection = 1; // 1 = Ascending, -1 = Descending
+let lastSortedColumn = '';
+
+// Add click event to every header
+tableHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+        const column = header.getAttribute('data-column');
+        
+        // If the header doesn't have a data-column attribute, do nothing
+        if (!column) return;
+
+        // Toggle sort direction if clicking the same column
+        if (lastSortedColumn === column) {
+            sortDirection *= -1;
+        } else {
+            sortDirection = 1; // Reset to ascending for new column
+            lastSortedColumn = column;
+        }
+
+        sortArray(column, sortDirection);
+        updateHeaderStyles(column, sortDirection);
+    });
+});
+
+function sortArray(column, direction) {
+    tableData.sort((a, b) => {
+        // Safe check for null values and convert to lowercase for comparison
+        const valA = (a[column] || '').toString().toLowerCase();
+        const valB = (b[column] || '').toString().toLowerCase();
+
+        if (valA < valB) return -1 * direction;
+        if (valA > valB) return 1 * direction;
+        return 0;
+    });
+
+    // Re-draw the table with sorted data
+    renderTable(tableData);
+}
+
+// Optional: Visual indicator (arrows) in the header
+function updateHeaderStyles(column, direction) {
+    tableHeaders.forEach(th => {
+        // Remove existing arrows
+        th.textContent = th.textContent.replace(' 🔼', '').replace(' 🔽', '');
+        
+        // Add arrow to current sorted header
+        if (th.getAttribute('data-column') === column) {
+            th.textContent += direction === 1 ? ' 🔼' : ' 🔽';
+        }
+    });
+}
