@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Websites</title>
+    <!-- Linking the CSS file we will create in Step 5 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Good Websites</h1>
+            <!-- PASTE YOUR GOOGLE FORM URL IN THE HREF BELOW -->
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScLGFY0QVQeF36YLVMg9-HhBSKCMrvF5IowRxE4VabnoHaF_g/viewform?usp=sharing&ouid=114728699733237187797" target="_blank" class="add-btn">Add New Entry</a>
+        </header>
+
+        <main>
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <!-- Headers matching your Google Sheet Data -->
+                        <!-- We add 'data-column' attributes to help with sorting later -->
+                        <th data-column="name">Name</th>
+                        <th data-column="url">URL</th>
+                        <th data-column="used_for">Used for</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- JavaScript will insert rows here -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <!-- Linking the JavaScript file we will create in Step 3 -->
+    <script src="script.js"></script>
+</body>
+</html>
