@@ -47,7 +47,7 @@ function parseCSV(csvText) {
         // To be safe, we will grab data by finding the index of the header name.
         
         const urlIndex = headers.findIndex(h => h.includes('URL'));
-        const usedForIndex = headers.findIndex(h => h.includes('Used for'));
+        const usedForIndex = headers.findIndex(h => h.includes('Used For'));
         const nameIndex = headers.findIndex(h => h.includes('Name'));
 
         if (nameIndex > -1) obj.name = values[nameIndex];
